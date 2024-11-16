@@ -19,10 +19,6 @@ public class Predator extends Creature {
         this.fatigue = fatigue;
     }
 
-    public int getFatigue() {
-        return fatigue;
-    }
-
     public void makeMove(Point point, WorldMap map, MessageResultOfMove messageResult) {
         FinderOfPath finderOfPath = new FinderOfPath(map);
         ArrayList<Point> listPoint = finderOfPath.findOfPath(point, Herbivore.class);
@@ -41,5 +37,9 @@ public class Predator extends Creature {
             writeMessageResult(messageResult, false, listPoint.getLast(), null);
             map.moveEntity(point, listPoint.getLast());
         }
+    }
+
+    public int getFatigue() {
+        return fatigue;
     }
 }

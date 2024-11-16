@@ -48,11 +48,11 @@ public abstract class Herbivore extends Creature {
         ArrayList<Point> listOfEmptyPlace = listOfAroundPoint.stream().filter(map::isEmptyPlace).collect(Collectors.toCollection(ArrayList::new));
 
         ArrayList<Point> listOfReachable = new ArrayList<>();
-        for (Point value : listOfEmptyPlace) {
+        for (Point valuePoint : listOfEmptyPlace) {
             FinderOfPath finderOfPathObject = new FinderOfPath(map);
-            ArrayList<Point> listPoint = finderOfPathObject.findOfPath(point, value);
+            ArrayList<Point> listPoint = finderOfPathObject.findOfPath(point, valuePoint);
             if (!listPoint.isEmpty() && listPoint.size() <= this.getSpeed()) {
-                listOfReachable.add(value);
+                listOfReachable.add(valuePoint);
             }
         }
 
@@ -95,15 +95,15 @@ public abstract class Herbivore extends Creature {
 
     private static void getMapSumDistance(WorldMap map, ArrayList<Point> listOfReachableValid, Map<Point, Integer> tablePointDistance) {
         ArrayList<Point> listPoint;
-        for(Point p : listOfReachableValid){
+        for(Point pointOfListRV : listOfReachableValid){
             ArrayList<Point> list = map.getObjects(Predator.class);
             int distance = 0;
-            for(Point pp : list){
+            for(Point pointOfPredator : list){
                 FinderOfPath finderOfPathObject = new FinderOfPath(map);
-                listPoint = finderOfPathObject.findOfPath(p, pp);
+                listPoint = finderOfPathObject.findOfPath(pointOfListRV, pointOfPredator);
                 distance += listPoint.size();  //суммируем пути до каждого оставшегося в живых хищника
             }
-            tablePointDistance.put(p, distance);
+            tablePointDistance.put(pointOfListRV, distance);
         }
     }
 
@@ -128,9 +128,9 @@ public abstract class Herbivore extends Creature {
         }
 
         ArrayList<Point> listOfAroundPointValid = new ArrayList<>();
-        for (Point value : listOfAroundPoint) {
-            if (value.getX() >= 0 && value.getX() < map.getSize().getX() && value.getY() >= 0 && value.getY() < map.getSize().getY()) {
-                listOfAroundPointValid.add(value);
+        for (Point valuePoint : listOfAroundPoint) {
+            if (valuePoint.getX() >= 0 && valuePoint.getX() < map.getSize().getX() && valuePoint.getY() >= 0 && valuePoint.getY() < map.getSize().getY()) {
+                listOfAroundPointValid.add(valuePoint);
             }
         }
 
@@ -141,6 +141,5 @@ public abstract class Herbivore extends Creature {
         int index = new Random().nextInt(listPoint.size());
         return listPoint.get(index);
     }
-
 
 }

@@ -74,12 +74,12 @@ public class FinderOfPath {
 
         private Point findNearestGoal(Point point, Class<? extends Entity> object){
 
-                        ArrayList<Point> listOfPoint = map.getObjects(object);
-                        int[] array = new int[listOfPoint.size()];
-                        for(int i = 0; i < listOfPoint.size(); i++){
-                                array[i] = shortestDistanceBetweenDots(listOfPoint.get(i), point);
-                        }
-                        return listOfPoint.get(findMinIdx(array));
+             ArrayList<Point> listOfPoint = map.getObjects(object);
+             int[] array = new int[listOfPoint.size()];
+             for(int i = 0; i < listOfPoint.size(); i++){
+                 array[i] = shortestDistanceBetweenDots(listOfPoint.get(i), point);
+             }
+             return listOfPoint.get(findMinIdx(array));
 
         }
 
@@ -110,17 +110,17 @@ public class FinderOfPath {
         }
 
         private int shortestDistanceBetweenDots(Point p1, Point p2){
-                int x1 = p1.x;
-                int x2 = p2.x;
-                int y1 = p1.y;
-                int y2 = p2.y;
+            int x1 = p1.x;
+            int x2 = p2.x;
+            int y1 = p1.y;
+            int y2 = p2.y;
             return Math.abs(x1 - x2) + Math.abs(y1 - y2);
         }
 
 
         private int findMinIdx(int[] numbers) {
-                OptionalInt min = IntStream.of(numbers).min();
-                return IntStream.of(numbers).boxed().toList().indexOf(min.getAsInt());
+            OptionalInt min = IntStream.of(numbers).min();
+            return IntStream.of(numbers).boxed().toList().indexOf(min.getAsInt());
         }
 
         private boolean isExploredPoint(Point point){
@@ -148,18 +148,18 @@ public class FinderOfPath {
         }
 
         private ArrayList<Point> getAroundPoint(FindPathsPoint findPathsPoint){
-           ArrayList<Point> listOfAroundPoint = new ArrayList<>();
-           Point point1 = new Point(findPathsPoint.getPoint().x+1, findPathsPoint.getPoint().y);
-           Point point2 = new Point(findPathsPoint.getPoint().x, findPathsPoint.getPoint().y+1);
-           Point point3 = new Point(findPathsPoint.getPoint().x-1, findPathsPoint.getPoint().y);
-           Point point4 = new Point(findPathsPoint.getPoint().x, findPathsPoint.getPoint().y-1);
-           Point[] array = new Point[]{point1, point2, point3, point4};
-           for(Point point : array){
-               if(point.getX() >= 0 && point.getX() < map.getSize().getX() && point.getY() >= 0 && point.getY() < map.getSize().getY()){
-                   listOfAroundPoint.add(point);
-               }
-           }
-           return listOfAroundPoint;
+            ArrayList<Point> listOfAroundPoint = new ArrayList<>();
+            Point point1 = new Point(findPathsPoint.getPoint().x+1, findPathsPoint.getPoint().y);
+            Point point2 = new Point(findPathsPoint.getPoint().x, findPathsPoint.getPoint().y+1);
+            Point point3 = new Point(findPathsPoint.getPoint().x-1, findPathsPoint.getPoint().y);
+            Point point4 = new Point(findPathsPoint.getPoint().x, findPathsPoint.getPoint().y-1);
+            Point[] array = new Point[]{point1, point2, point3, point4};
+            for(Point point : array){
+                if(point.getX() >= 0 && point.getX() < map.getSize().getX() && point.getY() >= 0 && point.getY() < map.getSize().getY()){
+                    listOfAroundPoint.add(point);
+                }
+            }
+            return listOfAroundPoint;
         }
 
 

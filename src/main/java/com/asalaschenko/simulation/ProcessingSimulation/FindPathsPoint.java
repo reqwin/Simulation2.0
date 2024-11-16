@@ -5,9 +5,7 @@ import java.awt.*;
 public class FindPathsPoint {
 
         private int cost;
-
         private Point point;
-
         private FindPathsPoint previousLink;
 
         public FindPathsPoint(Point point, int cost, FindPathsPoint previousLink) {
