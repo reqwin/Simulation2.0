@@ -52,6 +52,26 @@ public class FinderOfPath {
                 }
         }
 
+        private void findNewReachablePoint(FindPathsPoint findPathsPoint){
+
+            ArrayList<Point> listOfAroundPoint = getAroundPoint(findPathsPoint);
+
+            for(Point point : listOfAroundPoint){
+                if(!isExploredPoint(point)) {
+                    if (isReachablePoint(point)) {
+                        //FindPathsPoint fpp = listOfReachablePoint.get(getReachablePointIndex(findPathsPoint.getPoint()));
+                        FindPathsPoint fpp = listOfReachablePoint.get(getReachablePointIndex(point));
+                        if (findPathsPoint.getCost() + 1 < fpp.getCost()) {
+                            fpp.setPreviousLink(findPathsPoint);
+                            fpp.setCost(findPathsPoint.getCost() + 1);
+                        }
+                    } else if (map.isEmptyPlace(point)) {
+                        listOfReachablePoint.add(new FindPathsPoint(point, findPathsPoint.getCost() + 1, findPathsPoint));
+                    }
+                }
+            }
+        }
+
         private Point findNearestGoal(Point point, Class<? extends Entity> object){
 
                         ArrayList<Point> listOfPoint = map.getObjects(object);
@@ -61,14 +81,6 @@ public class FinderOfPath {
                         }
                         return listOfPoint.get(findMinIdx(array));
 
-        }
-
-        private int shortestDistanceBetweenDots(Point p1, Point p2){
-                int x1 = p1.x;
-                int x2 = p2.x;
-                int y1 = p1.y;
-                int y2 = p2.y;
-            return Math.abs(x1 - x2) + Math.abs(y1 - y2);
         }
 
         private int getNearestToGoalReachablePoint(Point goal){
@@ -84,43 +96,31 @@ public class FinderOfPath {
             return key;
         }
 
-    private int getNearestToGoalExploredPoint(Point goal){
-        int distance = Integer.MAX_VALUE;
-        int key = -1;
-        for(int i = 0; i < listOfExploredPoint.size(); i++){
-            int var = shortestDistanceBetweenDots(goal, listOfExploredPoint.get(i).getPoint());
-            if(var < distance){
-                key = i;
-                distance = var;
+        private int getNearestToGoalExploredPoint(Point goal){
+            int distance = Integer.MAX_VALUE;
+            int key = -1;
+            for(int i = 0; i < listOfExploredPoint.size(); i++){
+                int var = shortestDistanceBetweenDots(goal, listOfExploredPoint.get(i).getPoint());
+                if(var < distance){
+                    key = i;
+                    distance = var;
+                }
             }
+            return key;
         }
-        return key;
-    }
+
+        private int shortestDistanceBetweenDots(Point p1, Point p2){
+                int x1 = p1.x;
+                int x2 = p2.x;
+                int y1 = p1.y;
+                int y2 = p2.y;
+            return Math.abs(x1 - x2) + Math.abs(y1 - y2);
+        }
 
 
         private int findMinIdx(int[] numbers) {
                 OptionalInt min = IntStream.of(numbers).min();
                 return IntStream.of(numbers).boxed().toList().indexOf(min.getAsInt());
-        }
-
-        private void findNewReachablePoint(FindPathsPoint findPathsPoint){
-
-                ArrayList<Point> listOfAroundPoint = getAroundPoint(findPathsPoint);
-
-                for(Point point : listOfAroundPoint){
-                    if(!isExploredPoint(point)) {
-                        if (isReachablePoint(point)) {
-                            //FindPathsPoint fpp = listOfReachablePoint.get(getReachablePointIndex(findPathsPoint.getPoint()));
-                            FindPathsPoint fpp = listOfReachablePoint.get(getReachablePointIndex(point));
-                            if (findPathsPoint.getCost() + 1 < fpp.getCost()) {
-                                fpp.setPreviousLink(findPathsPoint);
-                                fpp.setCost(findPathsPoint.getCost() + 1);
-                            }
-                        } else if (map.isEmptyPlace(point)) {
-                            listOfReachablePoint.add(new FindPathsPoint(point, findPathsPoint.getCost() + 1, findPathsPoint));
-                        }
-                    }
-                }
         }
 
         private boolean isExploredPoint(Point point){
@@ -164,46 +164,43 @@ public class FinderOfPath {
 
 
 
+        public ArrayList<Point> findOfPath(Point pointStart,  Point pontEnd){   //перегруженный метод
+                                                                                //на случай если потребуется найти кратчайший путь
+                                                                                //между двумя точками
+            ArrayList<Point> listOfPathsPoint = new ArrayList<>();
+            FindPathsPoint fppStart = new FindPathsPoint(pointStart, 0, null);
 
+            Point goal = pontEnd;
 
-
-    public ArrayList<Point> findOfPath(Point pointStart,  Point pontEnd){   //перегруженный метод
-                                                                            //на случай если потребуется найти кратчайший путь
-                                                                            //между двумя точками
-        ArrayList<Point> listOfPathsPoint = new ArrayList<>();
-        FindPathsPoint fppStart = new FindPathsPoint(pointStart, 0, null);
-
-        Point goal = pontEnd;
-
-        if(shortestDistanceBetweenDots(goal, pointStart) == 1){
-            listOfPathsPoint.add(goal);
-            return listOfPathsPoint;
-        }
-
-        findNewReachablePoint(fppStart);
-        listOfExploredPoint.add(fppStart);
-
-        while(true){
-            int key = getNearestToGoalReachablePoint(goal);
-            if(key == -1){
-                listOfExploredPoint.removeFirst();
-                key = getNearestToGoalExploredPoint(goal);
-                if(key != -1) {
-                    createPath(listOfPathsPoint, listOfExploredPoint.get(key));
-                    Collections.reverse(listOfPathsPoint);
-                }
-                return listOfPathsPoint;
-            }
-            if(shortestDistanceBetweenDots(goal, listOfReachablePoint.get(key).getPoint()) == 1){
+            if(shortestDistanceBetweenDots(goal, pointStart) == 1){
                 listOfPathsPoint.add(goal);
-                createPath(listOfPathsPoint, listOfReachablePoint.get(key));
-                Collections.reverse(listOfPathsPoint);
                 return listOfPathsPoint;
             }
-            findNewReachablePoint(listOfReachablePoint.get(key));
-            listOfExploredPoint.add(listOfReachablePoint.get(key));
-            listOfReachablePoint.remove(key);
+
+            findNewReachablePoint(fppStart);
+            listOfExploredPoint.add(fppStart);
+
+            while(true){
+                int key = getNearestToGoalReachablePoint(goal);
+                if(key == -1){
+                    listOfExploredPoint.removeFirst();
+                    key = getNearestToGoalExploredPoint(goal);
+                    if(key != -1) {
+                        createPath(listOfPathsPoint, listOfExploredPoint.get(key));
+                        Collections.reverse(listOfPathsPoint);
+                    }
+                    return listOfPathsPoint;
+                }
+                if(shortestDistanceBetweenDots(goal, listOfReachablePoint.get(key).getPoint()) == 1){
+                    listOfPathsPoint.add(goal);
+                    createPath(listOfPathsPoint, listOfReachablePoint.get(key));
+                    Collections.reverse(listOfPathsPoint);
+                    return listOfPathsPoint;
+                }
+                findNewReachablePoint(listOfReachablePoint.get(key));
+                listOfExploredPoint.add(listOfReachablePoint.get(key));
+                listOfReachablePoint.remove(key);
+            }
         }
-    }
 
 }
