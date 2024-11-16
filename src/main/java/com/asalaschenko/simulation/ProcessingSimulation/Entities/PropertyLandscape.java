@@ -9,10 +9,6 @@ public enum PropertyLandscape {
     FLOWER("\uD83C\uDF3A", 10, 0.05 , Flower.class),
     TREE("☘\uFE0F", 20, 0.025, Tree.class);
 
-    public double getSpawnRate() {
-        return spawnRate;
-    }
-
     private double spawnRate;
     private String code;
     private int HP;
@@ -29,6 +25,10 @@ public enum PropertyLandscape {
         this.spawnRate = spawnRate;
         this.landscapeClass = landscapeClass;
         this.code = code;
+    }
+
+    public double getSpawnRate() {
+        return spawnRate;
     }
 
     public int getHP(){

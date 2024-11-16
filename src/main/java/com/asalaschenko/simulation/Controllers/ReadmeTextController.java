@@ -1,14 +1,13 @@
 package com.asalaschenko.simulation.Controllers;
 
 import com.asalaschenko.simulation.ProcessingGraphic.ColorPrinter;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.regex.Pattern;
 
-public class ReadmeTextController extends BasicSettingsController {
+public class ReadmeTextController implements Controller {
 
     private String fileName;
     private InputStream inputStream;
