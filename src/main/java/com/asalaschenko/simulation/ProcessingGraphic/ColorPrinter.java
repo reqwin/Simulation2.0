@@ -59,25 +59,25 @@ public class ColorPrinter {
     }
 
     public static void printRedText(String str) {
-        System.out.print("\u001B[31m"
+        System.out.print(Color.RED.getCode()
                 + str
-                + "\u001B[0m");
+                + Color.RESET.getCode());
     }
 
     public static void printGreenText(String str) {
-        System.out.print("\u001B[32m"
+        System.out.print(Color.GREEN.getCode()
                 + str
-                + "\u001B[0m");
+                + Color.RESET.getCode());
     }
 
     public static void printYellowText(String str) {
-        System.out.print("\u001B[33m"
+        System.out.print(Color.YELLOW.getCode()
                 + str
-                + "\u001B[0m");
+                + Color.RESET.getCode());
     }
 
     public static void printYellowBackgroundText(String str) {
-        System.out.print("\u001B[43m"
+        System.out.print(Color.YELLOW_BACKGROUND.getCode()
                 + str
                 + "\u001B[0m");
     }
@@ -85,19 +85,19 @@ public class ColorPrinter {
     public static void printCyanText(String str) {
         System.out.print("\u001B[36m"
                 + str
-                + "\u001B[0m");
+                + Color.RESET.getCode());
     }
 
     public static void printPurpleText(String str) {
         System.out.print("\u001B[35m"
                 + str
-                + "\u001B[0m");
+                + Color.RESET.getCode());
     }
 
     public static void printBlueText(String str) {
         System.out.print("\u001B[34m"
                 + str
-                + "\u001B[0m");
+                + Color.RESET.getCode());
     }
 
 }
