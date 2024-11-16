@@ -59,7 +59,6 @@ public class FinderOfPath {
             for(Point point : listOfAroundPoint){
                 if(!isExploredPoint(point)) {
                     if (isReachablePoint(point)) {
-                        //FindPathsPoint fpp = listOfReachablePoint.get(getReachablePointIndex(findPathsPoint.getPoint()));
                         FindPathsPoint fpp = listOfReachablePoint.get(getReachablePointIndex(point));
                         if (findPathsPoint.getCost() + 1 < fpp.getCost()) {
                             fpp.setPreviousLink(findPathsPoint);
