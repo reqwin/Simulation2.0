@@ -9,7 +9,8 @@ import java.util.stream.Collectors;
 
 public class HandlerInputOutputXML {
 
-    private final String filePath = "src/main/resources/settings.xml";
+    private final String fileName = "src\\main\\resources\\settings.xml";
+    private final String filePath = System.getProperty("user.dir") + "\\" + fileName;
 
     public HandlerInputOutputXML() {
 
