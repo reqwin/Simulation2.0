@@ -35,7 +35,7 @@ public class FinderOfPath {
                     int key = getNearestToGoalReachablePoint(goal);
                     if(key == -1){
                             key = getNearestToGoalExploredPoint(goal);
-                            listOfExploredPoint.remove(0);
+                            listOfExploredPoint.removeFirst();
                             createPath(listOfPathsPoint, listOfExploredPoint.get(key));
                             Collections.reverse(listOfPathsPoint);
                             return listOfPathsPoint;
@@ -186,7 +186,7 @@ public class FinderOfPath {
         while(true){
             int key = getNearestToGoalReachablePoint(goal);
             if(key == -1){
-                listOfExploredPoint.remove(0);
+                listOfExploredPoint.removeFirst();
                 key = getNearestToGoalExploredPoint(goal);
                 if(key != -1) {
                     createPath(listOfPathsPoint, listOfExploredPoint.get(key));
