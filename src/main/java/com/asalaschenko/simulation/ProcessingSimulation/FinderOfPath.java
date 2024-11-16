@@ -13,8 +13,8 @@ public class FinderOfPath {
                 this.map = map;
         }
 
-        public ArrayList<FindPathsPoint> listOfReachablePoint = new ArrayList<>();
-        public ArrayList<FindPathsPoint> listOfExploredPoint = new ArrayList<>();
+        private ArrayList<FindPathsPoint> listOfReachablePoint = new ArrayList<>();
+        private ArrayList<FindPathsPoint> listOfExploredPoint = new ArrayList<>();
 
         public ArrayList<Point> findOfPath(Point point,  Class<? extends Entity> object){
 
@@ -52,7 +52,7 @@ public class FinderOfPath {
                 }
         }
 
-        public Point findNearestGoal(Point point, Class<? extends Entity> object){
+        private Point findNearestGoal(Point point, Class<? extends Entity> object){
 
                         ArrayList<Point> listOfPoint = map.getObjects(object);
                         int[] array = new int[listOfPoint.size()];
@@ -63,7 +63,7 @@ public class FinderOfPath {
 
         }
 
-        public int shortestDistanceBetweenDots(Point p1, Point p2){
+        private int shortestDistanceBetweenDots(Point p1, Point p2){
                 int x1 = p1.x;
                 int x2 = p2.x;
                 int y1 = p1.y;
@@ -98,12 +98,12 @@ public class FinderOfPath {
     }
 
 
-        public int findMinIdx(int[] numbers) {
+        private int findMinIdx(int[] numbers) {
                 OptionalInt min = IntStream.of(numbers).min();
                 return IntStream.of(numbers).boxed().toList().indexOf(min.getAsInt());
         }
 
-        public void findNewReachablePoint(FindPathsPoint findPathsPoint){
+        private void findNewReachablePoint(FindPathsPoint findPathsPoint){
 
                 ArrayList<Point> listOfAroundPoint = getAroundPoint(findPathsPoint);
 
@@ -123,15 +123,15 @@ public class FinderOfPath {
                 }
         }
 
-        public boolean isExploredPoint(Point point){
+        private boolean isExploredPoint(Point point){
             return listOfExploredPoint.stream().anyMatch(x -> x.getPoint().equals(point));
         }
 
-        public boolean isReachablePoint(Point point){
+        private boolean isReachablePoint(Point point){
             return listOfReachablePoint.stream().anyMatch(x -> x.getPoint().equals(point));
         }
 
-        public int getReachablePointIndex(Point point){
+        private int getReachablePointIndex(Point point){
             for(int i = 0; i<listOfReachablePoint.size(); i++){
                     if(listOfReachablePoint.get(i).getPoint().equals(point)){
                         return i;
@@ -140,7 +140,7 @@ public class FinderOfPath {
             return -1;
         }
 
-        public void createPath(ArrayList<Point> listOfPathsPoint, FindPathsPoint fpp){
+        private void createPath(ArrayList<Point> listOfPathsPoint, FindPathsPoint fpp){
             if(fpp.getPreviousLink()!=null){
                 listOfPathsPoint.add(fpp.getPoint());
                 createPath(listOfPathsPoint, fpp.getPreviousLink());
