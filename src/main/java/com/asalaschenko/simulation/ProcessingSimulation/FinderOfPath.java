@@ -18,20 +18,20 @@ public class FinderOfPath {
 
         public ArrayList<Point> findOfPath(Point point,  Class<? extends Entity> object){
 
-                ArrayList<Point> listOfPathsPoint = new ArrayList<>();
-                FindPathsPoint fppStart = new FindPathsPoint(point, 0, null);
+            ArrayList<Point> listOfPathsPoint = new ArrayList<>();
+            FindPathsPoint fppStart = new FindPathsPoint(point, 0, null);
 
-                Point goal = findNearestGoal(point, object);
+            Point goal = findNearestGoal(point, object);
 
-                if(shortestDistanceBetweenDots(goal, point) == 1){
+            if(shortestDistanceBetweenDots(goal, point) == 1){
                     listOfPathsPoint.add(goal);
                     return listOfPathsPoint;
-                }
+            }
 
-                findNewReachablePoint(fppStart);
-                listOfExploredPoint.add(fppStart);
+            findNewReachablePoint(fppStart);
+            listOfExploredPoint.add(fppStart);
 
-                while(true){
+            while(true){
                     int key = getNearestToGoalReachablePoint(goal);
                     if(key == -1){
                             key = getNearestToGoalExploredPoint(goal);
@@ -49,7 +49,7 @@ public class FinderOfPath {
                     findNewReachablePoint(listOfReachablePoint.get(key));
                     listOfExploredPoint.add(listOfReachablePoint.get(key));
                     listOfReachablePoint.remove(key);
-                }
+            }
         }
 
         private void findNewReachablePoint(FindPathsPoint findPathsPoint){
