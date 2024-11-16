@@ -10,7 +10,6 @@ import java.util.Map;
 public class WorldMap {
 
         Map<Point, Entity> area = new HashMap<>();
-
         Point size;
 
         public WorldMap(Point size){

@@ -46,14 +46,6 @@ public class Simulation {
         System.out.println();
     }
 
-    public boolean getPause() {
-        return isPause;
-    }
-
-    public void setPause() {
-        isPause = !isPause;
-    }
-
     private void runSimulation() throws Exception {
         boolean loopManage = true;
         boolean stepOrder = true; //true - шаг делает Predator; false - Herbivore
@@ -74,5 +66,13 @@ public class Simulation {
             renderer.render(this.map, count, stepOrder);
             stepOrder = !stepOrder;
         }
+    }
+
+    public boolean getPause() {
+        return isPause;
+    }
+
+    public void setPause() {
+        isPause = !isPause;
     }
 }

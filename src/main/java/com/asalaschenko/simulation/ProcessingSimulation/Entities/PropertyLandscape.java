@@ -4,10 +4,10 @@ import com.asalaschenko.simulation.ProcessingSimulation.Entities.LandscapeElemen
 
 public enum PropertyLandscape {
 
-    ROCK("⛰\uFE0F", 0.075 , Rock.class),
+    ROCK("⛰️", 0.075 , Rock.class),
     GRASS("\uD83C\uDF40", 5, 0.05, Grass.class),
     FLOWER("\uD83C\uDF3A", 10, 0.05 , Flower.class),
-    TREE("☘\uFE0F", 20, 0.025, Tree.class);
+    TREE("☘️", 20, 0.025, Tree.class);
 
     private double spawnRate;
     private String code;

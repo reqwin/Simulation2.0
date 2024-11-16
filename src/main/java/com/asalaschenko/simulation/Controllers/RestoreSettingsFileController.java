@@ -3,7 +3,6 @@ package com.asalaschenko.simulation.Controllers;
 import com.asalaschenko.simulation.ProcessingGraphic.ColorPrinter;
 import com.asalaschenko.simulation.ProcessingSettingsFile.*;
 import jakarta.xml.bind.JAXBException;
-
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
