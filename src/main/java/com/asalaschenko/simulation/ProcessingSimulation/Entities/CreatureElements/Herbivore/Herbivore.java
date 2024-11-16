@@ -61,8 +61,8 @@ public abstract class Herbivore extends Creature {
         Point pointToMove = null;
 
         if(!listOfReachable.isEmpty()) {
-            getTablePointDistance(map, listOfReachable, tablePointDistance);
-            getListOfMaxDistPoint(tablePointDistance, listOfMaxDistancePoint);
+            fillTablePointDistance(map, listOfReachable, tablePointDistance);
+            fillListOfMaxDistPoint(tablePointDistance, listOfMaxDistancePoint);
             if(listOfMaxDistancePoint.size()>1){
                 pointToMove = getRandomPoint(listOfMaxDistancePoint);
             }else if(listOfMaxDistancePoint.size() == 1){
@@ -76,7 +76,7 @@ public abstract class Herbivore extends Creature {
         }
     }
 
-    private void getListOfMaxDistPoint(Map<Point, Integer> tablePointDistance, ArrayList<Point> listOfMaxDistancePoint) {
+    private void fillListOfMaxDistPoint(Map<Point, Integer> tablePointDistance, ArrayList<Point> listOfMaxDistancePoint) {
         int maxValue;
         Map.Entry<Point, Integer> maxEntry = null;
         for (Map.Entry<Point, Integer> entry : tablePointDistance.entrySet()) {
@@ -93,7 +93,7 @@ public abstract class Herbivore extends Creature {
         }
     }
 
-    private static void getTablePointDistance(WorldMap map, ArrayList<Point> listOfReachableValid, Map<Point, Integer> tablePointDistance) {
+    private static void fillTablePointDistance(WorldMap map, ArrayList<Point> listOfReachableValid, Map<Point, Integer> tablePointDistance) {
         ArrayList<Point> listPoint;
         for(Point pointOfListRV : listOfReachableValid){
             ArrayList<Point> list = map.getObjects(Predator.class);
