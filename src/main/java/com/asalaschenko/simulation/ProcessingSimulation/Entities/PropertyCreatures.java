@@ -18,6 +18,14 @@ public enum PropertyCreatures {
     RABBIT("\uD83D\uDC07", 3, 2, 30, Rabbit.class),
     CHICKEN("\uD83D\uDC24", 1, 4, 30, Chicken.class);
 
+    private String code;
+    private int HP;
+    private int attackPower;
+    private int speed;
+    private int fatigue;
+    private Class<? extends Predator>  predatorClass;
+    private Class<? extends Herbivore>  herbivoreClass;
+
     PropertyCreatures(String code, int speed, int attackPower , int hp, Class<? extends Herbivore>  herbivoreClass){
         this.code = code;
         this.HP = hp;
@@ -34,21 +42,6 @@ public enum PropertyCreatures {
         this.fatigue = fatigue;
         this.predatorClass = predatorClass;
     }
-
-    private String code;
-
-    private int HP;
-
-    private int attackPower;
-
-    private int speed;
-
-    private int fatigue;
-
-    private Class<? extends Predator>  predatorClass;
-
-    private Class<? extends Herbivore>  herbivoreClass;
-
 
     public String getCode(){
         return code;

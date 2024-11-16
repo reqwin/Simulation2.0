@@ -19,6 +19,19 @@ public abstract class Creature extends Entity {
         this.attackPower = attackPower;
     }
 
+    protected void writeMessageResult(MessageResultOfMove messageResult, boolean Attack, int countOfSteps, Point newPoint, Point coordinatesOfAttackedCreature){   //for Predators
+        messageResult.setAttack(Attack);
+        messageResult.setCountOfSteps(countOfSteps);
+        messageResult.setNewPoint(newPoint);
+        messageResult.setCoordinatesOfAttackedCreature(coordinatesOfAttackedCreature);
+    }
+
+    protected void writeMessageResult(MessageResultOfMove messageResult, boolean Attack, Point newPoint, Point coordinatesOfAttackedCreature){   //for Herbivores
+        messageResult.setAttack(Attack);
+        messageResult.setNewPoint(newPoint);
+        messageResult.setCoordinatesOfAttackedCreature(coordinatesOfAttackedCreature);
+    }
+
     public int getSpeed() {
         return speed;
     }
@@ -33,19 +46,6 @@ public abstract class Creature extends Entity {
 
     public void setHp(int hp) {
         this.hp = hp;
-    }
-
-    protected void writeMessageResult(MessageResultOfMove messageResult, boolean Attack, int countOfSteps, Point newPoint, Point coordinatesOfAttackedCreature){   //for Predators
-        messageResult.setAttack(Attack);
-        messageResult.setCountOfSteps(countOfSteps);
-        messageResult.setNewPoint(newPoint);
-        messageResult.setCoordinatesOfAttackedCreature(coordinatesOfAttackedCreature);
-    }
-
-    protected void writeMessageResult(MessageResultOfMove messageResult, boolean Attack, Point newPoint, Point coordinatesOfAttackedCreature){   //for Herbivores
-        messageResult.setAttack(Attack);
-        messageResult.setNewPoint(newPoint);
-        messageResult.setCoordinatesOfAttackedCreature(coordinatesOfAttackedCreature);
     }
 
 }

@@ -5,11 +5,8 @@ import java.awt.*;
 public class MessageResultOfMove {
 
     private boolean isAttack = false;
-
     private Point coordinatesOfAttackedCreature;
-
     private Point newPoint;
-
     private int countOfSteps;
 
     public MessageResultOfMove() {
