@@ -16,30 +16,16 @@ public class WorldMap {
             this.size = size;
         }
 
-        public Point getSize(){
-                return size;
-        }
-
-        public void setEntity(Point point, Entity entity){
-                area.put(point, entity);
-        }
-
-        public Entity getEntity(Point point){
-                return area.get(point);
-        }
-
         public void moveEntity(Point start, Point end){
                 Entity e = area.get(start);
                 area.remove(start);
                 area.put(end, e);
         }
 
-        public void removeEntity(Point point) {
-                area.remove(point);
-        }
-
-        public boolean isEmptyPlace(Point point){
-                return !area.containsKey(point);
+        public boolean isPredatorOrHerbivorePopulationDying(){
+                ArrayList<Point> listPredator = getObjects(Predator.class);
+                ArrayList<Point> listHerbivore = getObjects(Herbivore.class);
+                return listPredator.isEmpty() || listHerbivore.isEmpty();
         }
 
         public ArrayList<Point> getObjects(Class<? extends Entity> obj){
@@ -52,9 +38,23 @@ public class WorldMap {
                 return listOfPoint;
         }
 
-        public boolean isPredatorOrHerbivorePopulationDying(){
-                ArrayList<Point> listPredator = getObjects(Predator.class);
-                ArrayList<Point> listHerbivore = getObjects(Herbivore.class);
-            return listPredator.isEmpty() || listHerbivore.isEmpty();
+        public Point getSize(){
+                return size;
+        }
+
+        public void setEntity(Point point, Entity entity){
+                area.put(point, entity);
+        }
+
+        public Entity getEntity(Point point){
+                return area.get(point);
+        }
+
+        public void removeEntity(Point point) {
+                area.remove(point);
+        }
+
+        public boolean isEmptyPlace(Point point){
+                return !area.containsKey(point);
         }
 }
