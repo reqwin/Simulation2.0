@@ -27,9 +27,9 @@ public class Predator extends Creature {
         FinderOfPath finderOfPath = new FinderOfPath(map);
         ArrayList<Point> listPoint = finderOfPath.findOfPath(point, Herbivore.class);
         int numberOfStepsToCreature = listPoint.size()-1;
-        if(map.getEntity(listPoint.get(listPoint.size() - 1)) instanceof Herbivore) {
+        if(map.getEntity(listPoint.getLast()) instanceof Herbivore) {
             if (numberOfStepsToCreature == 0) {
-                writeMessageResult(messageResult, true, 0, null, listPoint.get(0));
+                writeMessageResult(messageResult, true, 0, null, listPoint.getFirst());
             } else if (numberOfStepsToCreature > 0 && numberOfStepsToCreature <= this.getSpeed()) {
                 writeMessageResult(messageResult, true, numberOfStepsToCreature, listPoint.get(numberOfStepsToCreature - 1), listPoint.get(numberOfStepsToCreature));
                 map.moveEntity(point, listPoint.get(numberOfStepsToCreature - 1));
@@ -38,8 +38,8 @@ public class Predator extends Creature {
                 map.moveEntity(point, listPoint.get(this.getSpeed() - 1));
             }
         }else {
-            writeMessageResult(messageResult, false, listPoint.get(listPoint.size() - 1), null);
-            map.moveEntity(point, listPoint.get(listPoint.size() - 1));
+            writeMessageResult(messageResult, false, listPoint.getLast(), null);
+            map.moveEntity(point, listPoint.getLast());
         }
     }
 }
