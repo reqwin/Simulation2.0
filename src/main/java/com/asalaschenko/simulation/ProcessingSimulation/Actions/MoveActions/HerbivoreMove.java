@@ -18,7 +18,7 @@ public class HerbivoreMove extends MoveAction {
     public void doAction(WorldMap map) throws Exception {
 
         ArrayList<Point> pointsOfPlants = map.getObjects(Plant.class);
-        if(pointsOfPlants.size()==0){
+        if(pointsOfPlants.isEmpty()){
             Action initLand = new LandscapeInit();
             initLand.doAction(map);
         }
@@ -45,7 +45,7 @@ public class HerbivoreMove extends MoveAction {
     public void doAction(WorldMap map, Class<? extends Herbivore> creatureClass) throws Exception {   //перегруженный метод, если необходимо сделать ход
                                                                                                      //каким-либо конкретным существом (травоядным)
         ArrayList<Point> pointsOfPlants = map.getObjects(Plant.class);
-        if(pointsOfPlants.size()==0){
+        if(pointsOfPlants.isEmpty()){
             Action initLand = new LandscapeInit();
             initLand.doAction(map);
         }

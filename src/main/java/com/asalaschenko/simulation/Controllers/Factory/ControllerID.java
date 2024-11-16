@@ -1,6 +1,5 @@
 package com.asalaschenko.simulation.Controllers.Factory;
 
-import com.asalaschenko.simulation.Controllers.SpeedRenderingController;
 
 public enum ControllerID {
 

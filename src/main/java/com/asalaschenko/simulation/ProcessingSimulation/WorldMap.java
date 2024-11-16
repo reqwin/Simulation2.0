@@ -56,10 +56,6 @@ public class WorldMap {
         public boolean isPredatorOrHerbivorePopulationDying(){
                 ArrayList<Point> listPredator = getObjects(Predator.class);
                 ArrayList<Point> listHerbivore = getObjects(Herbivore.class);
-                if(listPredator.isEmpty() || listHerbivore.isEmpty()){
-                        return true;
-                }else{
-                        return false;
-                }
+            return listPredator.isEmpty() || listHerbivore.isEmpty();
         }
 }

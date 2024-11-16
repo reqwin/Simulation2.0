@@ -24,11 +24,7 @@ public abstract class MoveAction implements Action {
             creature.setHp(currentHPOfCreature);
         }else if(tlc.equals(TypeOfLiveChange.INCREASE)){
             currentHPOfCreature += sizeHP;
-            if(currentHPOfCreature > 100){
-                creature.setHp(100);
-            }else{
-                creature.setHp(currentHPOfCreature);
-            }
+            creature.setHp(Math.min(currentHPOfCreature, 100));
         }
     }
 
