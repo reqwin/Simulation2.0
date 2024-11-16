@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<WorldMap>
+    <Size>
+        <Column>10</Column>
+        <Row>10</Row>
+    </Size>
+    <SpeedRendering>1000</SpeedRendering>
+    <GroundSprite>⬜</GroundSprite>
+    <Creatures>
+        <Herbivores>
+            <RODENT>true</RODENT>
+            <RABBIT>true</RABBIT>
+            <CHICKEN>true</CHICKEN>
+        </Herbivores>
+        <Predators>
+            <EAGLE>true</EAGLE>
+            <WOLF>true</WOLF>
+            <LION>true</LION>
+        </Predators>
+    </Creatures>
+</WorldMap>
